@@ -1,5 +1,9 @@
 # 📚 Open Library Data Pipeline
 
+[![CI](https://github.com/MoussaInc/data-ingestion-dlt/workflows/CI/badge.svg)](https://github.com/MoussaInc/data-ingestion-dlt/actions)
+[![Scheduled](https://github.com/MoussaInc/data-ingestion-dlt/workflows/Scheduled%20Pipeline/badge.svg)](https://github.com/MoussaInc/data-ingestion-dlt/actions)
+
+
 Pipeline d'ingestion de données avec **dlt** : extrait des livres depuis l'API Open Library et les charge dans DuckDB.
 
 ## 🚀 Quick Start
@@ -64,3 +68,11 @@ Modifiez les requêtes dans `main.py` :
 ```python
 queries = ["data engineering", "harry potter"]  # ← Changez ici
 ```
+
+## ⏰ Automatisation
+
+Le pipeline s'exécute automatiquement :
+- **Chaque dimanche à minuit (UTC)** via GitHub Actions
+- Peut aussi être déclenché manuellement depuis l'onglet Actions
+
+Les données sont sauvegardées comme artifacts pendant 30 jours.
