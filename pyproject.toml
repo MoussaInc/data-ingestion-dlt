@@ -11,5 +11,11 @@ dependencies = [
     "notebook>=7.5.5",
     "numpy>=2.4.3",
     "pandas>=3.0.1",
+    "pytest>=9.0.2",
     "requests>=2.32.5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
 ]

@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+    
+    - name: Set up Python
+      run: uv python install 3.11
+    
+    - name: Install dependencies
+      run: uv sync
+    
+    - name: Run pipeline
+      run: uv run python main.py
+    
+    - name: Verify database
+      run: |
+        uv run python -c "
+        import duckdb
+        con = duckdb.connect('open_library.duckdb')
+        count = con.execute('SELECT COUNT(*) FROM library.books').fetchone()[0]
+        print(f'✅ Loaded {count} books')
+        assert count > 0, 'No books loaded!'
+        con.close()
+        "
+    
+    - name: Upload database artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: duckdb-database
+        path: open_library.duckdb
