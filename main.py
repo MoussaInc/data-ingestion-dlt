@@ -7,7 +7,7 @@ from pipeline import run_pipeline, analyze_data
 
 def main():
     # Sujets à chercher
-    queries = ["data engineering", "harry potter"]
+    queries = ["data engineering", "harry potter", "python", "data","horrible"]
     
     print("🚀 Open Library Pipeline\n")
     
@@ -25,6 +25,7 @@ def main():
     print(f"📚 Total books: {stats['total_books']}")
     print(f"📖 Unique titles: {stats['unique_titles']}")
     print(f"📅 Years: {stats['oldest_year']} - {stats['newest_year']}")
+
 
 
 if __name__ == "__main__":
