@@ -32,7 +32,7 @@ jobs:
         import duckdb
         con = duckdb.connect('open_library.duckdb')
         count = con.execute('SELECT COUNT(*) FROM library.books').fetchone()[0]
-        print(f'✅ Loaded {count} books')
+        print(f'Loaded {count} books')
         assert count > 0, 'No books loaded!'
         con.close()
         "
